@@ -7,26 +7,49 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
     <script>
-        $(document).ready(function(){
-            makeList()
-        });
+        // $(document).ready(function(){
+        //     makeList()
+        // });
 
-        function makeList() {
-	        $.ajax({
-		        type: "POST",
-		        url: "/aaa",
-		        data: {},
-		        success: function(response){
-			        if(response['result'] == 'success'){
-				        alert('술갱신!');
-			        }
-		        }
-	        })
+        // function makeList() {
+	    //     $.ajax({
+		//         type: "POST",
+		//         url: "/aaa",
+		//         data: {},
+		//         success: function(response){
+		// 	        if(response['result'] == 'success'){
+		// 		        alert('술갱신!');
+		// 	        }
+		//         }
+	    //     })
+        // }
+
+        function show() {
+            $.ajax({
+                type: "GET",
+                url: "/alchol",
+                data:{},
+                success: function (response) {
+                    let rows = response["alchols"]
+                    for (let i = 0; i < rows.length; i++) {
+                        let place = rows[i]['place']
+                        let name = rows[i]['name']
+                        if(placra = place.includes('제주특')) {
+                            
+                            console.log(place, name)
+                        }
+                        
+                        
+                        
+                    }
+                    
+                }
+            })
         }
     </script>
 </head>
 <body>
-    <h1>로그인 페이지</h1>
-    <a href="/sign_up">상세 페이지로가기</a>
+    <button onclick="show()">여기</button>
+    <h2></h2>
 </body>
 </html>
