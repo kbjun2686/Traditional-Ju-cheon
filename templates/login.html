@@ -3,7 +3,7 @@
 <head>
 
     <!-- Webpage Title -->
-    <title>Log In | SWEETER</title>
+    <title>Log In | 전통주차</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,14 +20,23 @@
 
     <style>
         body {
-            background-color: RGBA(232, 52, 78, 0.2);
+            background-color: #c69760;
             min-height: 100vh;
         }
 
         .section {
-            padding: 1rem 1.5rem;
+            padding: 1.5rem 1.5rem;
             max-width: 7500px;
             margin: auto;
+        }
+
+        .hero-body img {
+            max-width: 150px;
+        }
+
+
+        .box {
+            padding: 2rem 1.5rem;
         }
 
         .title {
@@ -44,15 +53,15 @@
         }
 
         .button.is-sparta {
-            background-color: #e8344e;
+            background-color: #c69760;
             border-color: transparent;
-            color: #fff !important;
+            color: #F6F6F5 !important;
         }
 
         .button.is-sparta.is-outlined {
             background-color: transparent;
-            border-color: #e8344e;
-            color: #e8344e !important;
+            border-color: #ccc;
+            color: #c69760 !important;
         }
 
         .help {
@@ -158,6 +167,7 @@
             $("#div-sign-in-or-up").toggleClass("is-hidden")
             $("#btn-check-dup").toggleClass("is-hidden")
             $("#help-id").toggleClass("is-hidden")
+            $("#help-id-login").toggleClass("is-hidden")
             $("#help-password").toggleClass("is-hidden")
             $("#help-password2").toggleClass("is-hidden")
         }
@@ -211,8 +221,9 @@
 <body>
 <section class="hero is-white">
     <div class="hero-body has-text-centered" style="padding-bottom:1rem;margin:auto;">
-        <h1 class="title is-sparta">SWEETER</h1>
-        <h3 class="subtitle is-sparta">세상을 달달하게</h3>
+        <img src="/static/loginbg3.png" alt="bg">
+{#        <h1 class="title is-sparta">SWEETER</h1>#}
+{#        <h3 class="subtitle is-sparta">세상을 달달하게</h3>#}
     </div>
 </section>
 <section class="section">
