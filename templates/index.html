@@ -19,6 +19,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="/static/main.js" defer></script>
     <style>
         @font-face {
             font-family: 'ulsanjunggu';
@@ -81,9 +82,9 @@
 
         #map {
             width: 100%;
+            height: 480px;
             max-width: 768px;
             margin: auto;
-            height: 480px;
         }
 
         button{
@@ -91,6 +92,22 @@
             box-sizing: border-box;
         }
 
+
+        .wrap {
+            width: 90%;
+            max-width: 768px;
+            margin: 0 auto;
+            margin-top: 2rem;
+        }
+
+
+
+        .alchol_list {
+            overflow: scroll;
+            width: 100%;
+            height: calc(40vh - 60px);
+            position: relative;
+        }
 
     </style>
 
@@ -108,6 +125,9 @@
                             level: 14
                         };
                     let lists = response['alchols'];
+
+
+
                     let coords;
                     let geocoder = new kakao.maps.services.Geocoder();
                     let map = new kakao.maps.Map(container, options);
@@ -120,9 +140,20 @@
                     // 마커 이미지를 생성합니다
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-                    for (let list of lists) {
+                    for(let i=0; i<lists.length; i++) {
+                        let temp_html = `<div class="card" id="card-${i}">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><a href="javascript:click2center('${i}')" class="alchol-title">${lists[i]['name']}</a></h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted">${lists[i]['kind']}</h6>
+                                                    <p class="card-text">${lists[i]['place']}</p>
+                                                </div>
+                                            </div>`;
+                            $('#alchol-box').append(temp_html);
+
+
+
                         // 주소로 좌표를 검색합니다
-                        geocoder.addressSearch(list['place'], function (result, status) {
+                        geocoder.addressSearch(lists[i]['place'], function (result, status) {
 
                             // 정상적으로 검색이 완료됐으면
                             if (status === kakao.maps.services.Status.OK) {
@@ -137,20 +168,30 @@
 
                                 // 마커에 표시할 인포윈도우를 생성합니다
                                 var infowindow = new kakao.maps.InfoWindow({
-                                    content: list.name // 인포윈도우에 표시할 내용
+                                    content:lists[i].name // 인포윈도우에 표시할 내용
                                 });
 
                                 // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
                                 // 이벤트 리스너로는 클로저를 만들어 등록합니다
                                 // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-                                kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
+                                kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                                kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, i));
                                 kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
                                 marker.setMap(map);
 
                             }
                         });
+
+
                     }
+
+
+
+
+
+
+
                     // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
                     var mapTypeControl = new kakao.maps.MapTypeControl();
 
@@ -163,12 +204,29 @@
                     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
                 }
             });
+
+
         });
 
-        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-        function makeOverListener(map, marker, infowindow) {
+        function makeOverListener(map, marker, infowindow, ) {
             return function() {
                 infowindow.open(map, marker);
+            };
+        }
+
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+        function makeClickListener(map, marker, i) {
+            return function() {
+                map.panTo(marker.n);
+                let level = map.getLevel();
+                if(level === 14) {
+                    map.setLevel(level - 3);
+                }
+
+
+                $("#alchol-box").animate({
+                    scrollTop: $("#alchol-box").get(0).scrollTop + $(`#card-${i}`).position().top
+                }, 2000);
             };
         }
 
@@ -185,6 +243,8 @@
             alert('로그아웃!')
             window.location.href = "/login"
         }
+
+
 
 
     </script>
@@ -211,9 +271,12 @@
 <section>
     <div id="map"></div>
 </section>
-<section class="container">
-    <div class="content-box" style="height: 3000vh">ss</div>
-</section>
 
+    <div class="wrap">
+        <div class="banner"></div>
+        <div class="alchol_list" id="alchol-box">
+
+        </div>
+    </div>
 </body>
 </html>
