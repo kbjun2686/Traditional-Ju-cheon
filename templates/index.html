@@ -19,7 +19,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="/static/main.js" defer></script>
     <style>
         @font-face {
             font-family: 'ulsanjunggu';
@@ -92,10 +91,6 @@
             box-sizing: border-box;
         }
 
-        .isFixed {
-            position: fixed;
-            top: 0;
-        }
 
     </style>
 
@@ -113,7 +108,6 @@
                             level: 14
                         };
                     let lists = response['alchols'];
-                    let positions = [];
                     let coords;
                     let geocoder = new kakao.maps.services.Geocoder();
                     let map = new kakao.maps.Map(container, options);
