@@ -11,6 +11,9 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 
+client1 = MongoClient('mongodb+srv://test:sparta@cluster0.n802d.mongodb.net/?retryWrites=true&w=majority')
+db1 = client1.dbsparta
+
 SECRET_KEY = 'SPARTA'
 
 client = MongoClient('mongodb://test:test@localhost', 27017)
@@ -96,49 +99,66 @@ def check_dup():
     return jsonify({'result': 'success', 'exists': exists})
 
 
-@app.route('/update_profile', methods=['POST'])
-def save_img():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 프로필 업데이트
-        return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+# @app.route('/update_profile', methods=['POST'])
+# def save_img():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         # 프로필 업데이트
+#         return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
+#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+#         return redirect(url_for("home"))
+#
+#
+# @app.route('/posting', methods=['POST'])
+# def posting():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         # 포스팅하기
+#         return jsonify({"result": "success", 'msg': '포스팅 성공'})
+#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+#         return redirect(url_for("home"))
+#
+#
+# @app.route("/get_posts", methods=['GET'])
+# def get_posts():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         # 포스팅 목록 받아오기
+#         return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다."})
+#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+#         return redirect(url_for("home"))
+#
+#
+# @app.route('/update_like', methods=['POST'])
+# def update_like():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         # 좋아요 수 변경
+#         return jsonify({"result": "success", 'msg': 'updated'})
+#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+#         return redirect(url_for("home"))
 
 
-@app.route('/posting', methods=['POST'])
-def posting():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 포스팅하기
-        return jsonify({"result": "success", 'msg': '포스팅 성공'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+@app.route('/map')
+def web_map():
+    return render_template('index.html')
 
+@app.route('/users', methods=["GET"])
+def get_liquor():
+    # 맛집 목록을 반환하는 API
+    user_list = list(db.users.find({}, {'_id': False}))
+    # matjip_list 라는 키 값에 맛집 목록을 담아 클라이언트에게 반환합니다.
+    return jsonify({'result': 'success', 'user_list': user_list})
 
-@app.route("/get_posts", methods=['GET'])
-def get_posts():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 포스팅 목록 받아오기
-        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다."})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
-
-
-@app.route('/update_like', methods=['POST'])
-def update_like():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 좋아요 수 변경
-        return jsonify({"result": "success", 'msg': 'updated'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
-
+@app.route('/alchol', methods=['GET'])
+def get_now_showing():
+    alchols_list = list(db1.alchols.find({}, {'_id': False}))
+    # place_info = alchols_list['place']
+    return jsonify({'alchols' : alchols_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

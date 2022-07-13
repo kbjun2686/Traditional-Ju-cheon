@@ -1,29 +1,137 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>HOME | 전통주차</title>
+    <script type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=foovnp352n"></script>
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
-    <!-- Webpage Title -->
-    <title>Home | SWEETER</title>
+    <style>
+        @font-face {
+            font-family: 'ulsanjunggu';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ulsanjunggu.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        body {
+            margin: 0;
+            font-family: 'ulsanjunggu';
+        }
 
-    <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <!-- Font Awesome CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        .heading {
+            max-width: 768px;
+            width: 100%;
+            background: #F6F6F5;
+            display: flex;
+            align-items: center;
+            margin: 1rem auto;
 
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        }
 
+        .heading img {
+            width: 170px;
+            display: block;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            margin-right: 1.5rem;
+        }
+
+        .recommend {
+            color: #F32424;
+        }
+
+        #map {
+            width: 100%;
+            max-width: 768px;
+            margin: auto;
+            height: 480px;
+        }
+
+
+    </style>
 
     <script>
-    </script>
+        let y_cen = 37.4981125   // lat
+        let x_cen = 127.0379399  // long
+        let map;
+        let markers = [];
+        let infowindows = [];
 
+        $(document).ready(function () {
+            map = new naver.maps.Map('map', {
+                center: new naver.maps.LatLng(37.4981125, 127.0379399),
+                zoom: 10,
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    style: naver.maps.MapTypeControlStyle.BUTTON,
+                    position: naver.maps.Position.TOP_RIGHT
+                },
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: naver.maps.ZoomControlStyle.SMALL,
+                    position: naver.maps.Position.TOP_RIGHT
+                },
+                scaleControl: true,
+                scaleControlOptions: {
+                    position: naver.maps.Position.RIGHT_CENTER
+                },
+                logoControl: true,
+                logoControlOptions: {
+                    position: naver.maps.Position.TOP_LEFT
+                },
+                mapDataControl: true,
+                mapDataControlOptions: {
+                    position: naver.maps.Position.BOTTOM_LEFT
+                },
+            });
+            get_liquor();
+        })
+
+
+         function get_liquor() {
+             $.ajax({
+                 type: "GET",
+                 url: '/alchol',
+                 data: {},
+                success: function (response) {
+                    console.log(response["alchols"])
+                 }
+             });
+         }
+    </script>
 </head>
 <body>
-    <h1>로그인 성공!</h1>
+<section class="hero heading">
+    <div>
+        <img src="/static/loginbg3.png" alt="bg">
+    </div>
+    <div class="hero-body">
+        <p class="subtitle">
+            자꾸 생각나는 솔직한 매력의 지역 전통주 <br>
+            <span class="recommend">추천해 (酒)</span>
+        </p>
+    </div>
+</section>
+<section>
+    <div id="map"></div>
+</section>
+<section class="container">
+    <div class="content-box"></div>
+</section>
 </body>
 </html>
