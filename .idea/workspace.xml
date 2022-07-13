@@ -5,11 +5,126 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df39ca62-a7d0-4f89-9b07-487a3d46b6ce" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/traditional liquor .iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/traditional liquor .iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/dotenv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/PyJWT-2.4.0.dist-info/AUTHORS.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/PyJWT-2.4.0.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/PyJWT-2.4.0.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/PyJWT-2.4.0.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/PyJWT-2.4.0.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/PyJWT-2.4.0.dist-info/REQUESTED" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/PyJWT-2.4.0.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/PyJWT-2.4.0.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict-0.22.0.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict-0.22.0.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict-0.22.0.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict-0.22.0.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict-0.22.0.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict-0.22.0.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_abc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_bidict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_dup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_exc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_frozenbidict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_frozenordered.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_iter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_named.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_orderedbase.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_orderedbidict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/_typing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/metadata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/bidict/py.typed" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/dotenv/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/dotenv/cli.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/dotenv/ipython.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/dotenv/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/dotenv/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/dotenv/py.typed" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/dotenv/variables.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/dotenv/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/aiohttp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/eventlet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/gevent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/gevent_uwsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/sanic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/threading.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/async_drivers/tornado.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/asyncio_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/asyncio_server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/asyncio_socket.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/json.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/middleware.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/packet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/payload.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/socket.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/engineio/static_files.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/algorithms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/api_jwk.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/api_jws.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/api_jwt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/help.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/jwks_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/py.typed" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/jwt/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_dotenv-0.20.0.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_dotenv-0.20.0.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_dotenv-0.20.0.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_dotenv-0.20.0.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_dotenv-0.20.0.dist-info/REQUESTED" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_dotenv-0.20.0.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_dotenv-0.20.0.dist-info/entry_points.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_dotenv-0.20.0.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_engineio-4.3.3.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_engineio-4.3.3.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_engineio-4.3.3.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_engineio-4.3.3.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_engineio-4.3.3.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_engineio-4.3.3.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_socketio-5.7.0.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_socketio-5.7.0.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_socketio-5.7.0.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_socketio-5.7.0.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_socketio-5.7.0.dist-info/REQUESTED" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_socketio-5.7.0.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/python_socketio-5.7.0.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/asyncio_aiopika_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/asyncio_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/asyncio_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/asyncio_namespace.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/asyncio_pubsub_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/asyncio_redis_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/asyncio_server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/base_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/kafka_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/kombu_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/middleware.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/msgpack_packet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/namespace.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/packet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/pubsub_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/redis_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/tornado.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/socketio/zmq_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/alcohol_info.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/sign_up.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +223,7 @@
       <workItem from="1657644185321" duration="4000" />
       <workItem from="1657669659853" duration="3619000" />
       <workItem from="1657675263148" duration="364000" />
-      <workItem from="1657710600379" duration="299000" />
+      <workItem from="1657710600379" duration="875000" />
     </task>
     <servers />
   </component>

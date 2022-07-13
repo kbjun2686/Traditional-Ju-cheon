@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 
@@ -100,11 +101,61 @@
         //         map.setCenter(infowindow.position)
         //     }
         // }
+=======
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Webpage Title -->
+    <title>Home | SWEETER</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+
+
+    <script>    
+        // $(document).ready(function(){
+        //   makeList()
+        // });
+
+        // function makeList() {
+        //   $.ajax({
+        //     type: "POST",
+        //     url: "/aaa",
+        //     data: {},
+        //     success: function(response){
+        //       if(response['result'] == 'success'){
+        //         alert('술갱신!');
+        //       }
+        //     }
+        //   })
+        // }   
+        
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
+
+        
+
+
+>>>>>>> da8bc592b4c14ef5eeb151d2c72308647a4b6c8e
     </script>
 
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="wrap">
         <div class="banner"></div>
         <div id="map"></div>
@@ -123,3 +174,93 @@
 </body>
 
 </html>
+=======
+    <div id="map" style="width:500px;height:400px;"></div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38713a59f2ccf4818ba823067ba83e02&libraries=services,clusterer"></script>
+    <script>
+      $(document).ready(function(){
+        var container = document.getElementById('map');
+        var options = {
+        center: new kakao.maps.LatLng(36.438528, 127.858468),
+        level: 14
+        };  
+
+        var map = new kakao.maps.Map(container, options);
+        var geocoder = new kakao.maps.services.Geocoder();
+
+
+        $.ajax({
+              type: "GET",
+              url: "/alchol",
+              data:{},
+              success: function (response) {
+                  let rows = response["alchols"]
+                  for (let i = 0; i < rows.length; i++) {
+                      let place = rows[i]['place']
+                      let name = rows[i]['name']
+                      let kind = rows[i]['kind']
+                      let listData =[place]
+
+
+                      listData.forEach(function(addr, index) {
+                        geocoder.addressSearch(addr, function(result, status) {
+                          if (status === kakao.maps.services.Status.OK) {
+                          let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                          var position =[{
+                            coords:coords,
+                            cotent: "<div>" + place +"</div>"
+                          }];
+                          console.log(position[cotent])
+
+                          for (var i = 0; i < position.length; i++) {
+                            var marker = new kakao.maps.Marker({
+                              map:map,
+                              position: position[i].coords
+                            });
+
+                            var infowindow = new kakao.maps.InfoWindow({
+                              cotent: position[i].cotent,
+                              removable: true
+                            });
+
+                            kakao.maps.event.addListener(marker, 'click',(map, marker, infowindow));
+                          }
+                          function makeClick(map, marker, infowindow) {
+                            return function() {
+                              infowindow.open(map, marker)
+                            }
+                          }
+
+                    
+                          // var infowindow = new kakao.maps.InfoWindow({
+                          //     content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
+                          //     disableAutoPane: true
+                          // });
+                          // infowindow.open(map, marker);
+                          } 
+                        });
+                      });
+                  }
+              }
+          })
+      })
+      
+
+      
+      
+
+    </script>
+
+    <h1>로그인 성공!</h1>
+    <nav id="btns-me" class="level is-mobile" style="margin-top:2rem">
+        <a class="button level-item has-text-centered is-sparta is-outlined" aria-label="logout"
+           onclick="sign_out()">
+            로그아웃&nbsp;&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-sign-out"
+                                                                 aria-hidden="true"></i></span>
+        </a>
+    </nav>
+    
+</body>
+</html> 
+>>>>>>> da8bc592b4c14ef5eeb151d2c72308647a4b6c8e
