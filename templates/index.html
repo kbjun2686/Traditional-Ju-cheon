@@ -50,7 +50,7 @@
 </head>
 <body>
     <div id="map" style="width:500px;height:400px;"></div>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38713a59f2ccf4818ba823067ba83e02&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38713a59f2ccf4818ba823067ba83e02&libraries=services,clusterer"></script>
     <script>
       $(document).ready(function(){
         var container = document.getElementById('map');
@@ -73,24 +73,45 @@
                       let place = rows[i]['place']
                       let name = rows[i]['name']
                       let kind = rows[i]['kind']
-                      var listData =[place]
-                    
+                      let listData =[place]
 
 
                       listData.forEach(function(addr, index) {
                         geocoder.addressSearch(addr, function(result, status) {
                           if (status === kakao.maps.services.Status.OK) {
-                          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                          let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-                          var marker = new kakao.maps.Marker({
-                              map: map,
-                              position: coords
-                          });
-                          var infowindow = new kakao.maps.InfoWindow({
-                              content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
-                              disableAutoPan: true
-                          });
-                          infowindow.open(map, marker);
+                          var position =[{
+                            coords:coords,
+                            cotent: "<div>" + place +"</div>"
+                          }];
+                          console.log(position[cotent])
+
+                          for (var i = 0; i < position.length; i++) {
+                            var marker = new kakao.maps.Marker({
+                              map:map,
+                              position: position[i].coords
+                            });
+
+                            var infowindow = new kakao.maps.InfoWindow({
+                              cotent: position[i].cotent,
+                              removable: true
+                            });
+
+                            kakao.maps.event.addListener(marker, 'click',(map, marker, infowindow));
+                          }
+                          function makeClick(map, marker, infowindow) {
+                            return function() {
+                              infowindow.open(map, marker)
+                            }
+                          }
+
+                    
+                          // var infowindow = new kakao.maps.InfoWindow({
+                          //     content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
+                          //     disableAutoPane: true
+                          // });
+                          // infowindow.open(map, marker);
                           } 
                         });
                       });
