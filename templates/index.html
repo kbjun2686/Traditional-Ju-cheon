@@ -1,28 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Document</title>
-    <script>
+
+    <!-- Webpage Title -->
+    <title>Home | SWEETER</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+
+    <script>        
         // $(document).ready(function(){
-        //     makeList()
+        //   makeList()
         // });
 
         // function makeList() {
-	    //     $.ajax({
-		//         type: "POST",
-		//         url: "/aaa",
-		//         data: {},
-		//         success: function(response){
-		// 	        if(response['result'] == 'success'){
-		// 		        alert('술갱신!');
-		// 	        }
-		//         }
-	    //     })
+        //   $.ajax({
+        //     type: "POST",
+        //     url: "/aaa",
+        //     data: {},
+        //     success: function(response){
+        //       if(response['result'] == 'success'){
+        //         alert('술갱신!');
+        //       }
+        //     }
+        //   })
         // }
+
+
+
+
+
+
 
         function show() {
             $.ajax({
@@ -34,22 +51,30 @@
                     for (let i = 0; i < rows.length; i++) {
                         let place = rows[i]['place']
                         let name = rows[i]['name']
-                        if(placra = place.includes('제주특')) {
-                            
-                            console.log(place, name)
-                        }
-                        
-                        
+                        let kind = rows[i]['kind']
+                        console.log(place, name, kind)
                         
                     }
-                    
                 }
             })
         }
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
     </script>
+
 </head>
 <body>
-    <button onclick="show()">여기</button>
-    <h2></h2>
+    <h1>로그인 성공!</h1>
+    <button onclick="show()">test</button>
+    <nav id="btns-me" class="level is-mobile" style="margin-top:2rem">
+        <a class="button level-item has-text-centered is-sparta is-outlined" aria-label="logout"
+           onclick="sign_out()">
+            로그아웃&nbsp;&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-sign-out"
+                                                                 aria-hidden="true"></i></span>
+        </a>
+    </nav>
 </body>
-</html>
+</html> 
