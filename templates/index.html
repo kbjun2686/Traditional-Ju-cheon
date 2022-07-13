@@ -88,6 +88,10 @@
             height: 480px;
         }
 
+        button{
+            content: '';
+            box-sizing: border-box;
+        }
 
     </style>
 
@@ -96,8 +100,8 @@
         let x_cen = 127.0379399  // long
         let markers = [];
         let infowindows = [];
-        let lat=[];
-        let lon=[];
+        let lat = [];
+        let lon = [];
 
 
         $(document).ready(function () {
@@ -109,9 +113,9 @@
                 success: function (response) {
                     let container = document.getElementById('map'),
                         options = {
-                            center: new kakao.maps.LatLng(33.450701, 126.570667),
-                            level: 5
-                    };
+                            center: new kakao.maps.LatLng(36.438528, 127.858468),
+                            level: 14
+                        };
                     let lists = response['alchols'];
                     let positions = [];
                     let coords;
@@ -127,6 +131,7 @@
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
                     for (let list of lists) {
+                        console.log(list);
                         // 주소로 좌표를 검색합니다
                         geocoder.addressSearch(list['place'], function (result, status) {
 
@@ -141,16 +146,49 @@
                                     image: markerImage // 마커 이미지
                                 })
 
+                                // 마커에 표시할 인포윈도우를 생성합니다
+                                var infowindow = new kakao.maps.InfoWindow({
+                                    content: `${list.kind}: ${list.name}` // 인포윈도우에 표시할 내용
+                                });
+
+                                // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                                // 이벤트 리스너로는 클로저를 만들어 등록합니다
+                                // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                                kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                                kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+
                                 marker.setMap(map);
 
                             }
                         });
                     }
+                    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+                    var mapTypeControl = new kakao.maps.MapTypeControl();
+
+                    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+                    // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+                    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+                    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+                    var zoomControl = new kakao.maps.ZoomControl();
+                    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
                 }
             });
         });
 
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+        function makeOverListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
 
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+        function makeOutListener(infowindow) {
+            return function() {
+                infowindow.close();
+            };
+        }
 
 
         function sign_out() {
