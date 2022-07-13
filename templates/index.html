@@ -6,9 +6,12 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>HOME | 전통주차</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <script type="text/javascript"
-            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=foovnp352n"></script>
-        <!-- Optional JavaScript -->
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7ff9a80a7e962c1cd405fb9330c34e4&libraries=services"></script>
+    {#    <script type="text/javascript"#}
+    {#            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=foovnp352n"></script>#}
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -17,7 +20,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <style>
         @font-face {
             font-family: 'ulsanjunggu';
@@ -26,20 +29,29 @@
             font-style: normal;
         }
 
+
         body {
             margin: 0;
             font-family: 'ulsanjunggu';
         }
 
         .heading {
+            margin-top: 0;
+            background: #F6F6F5;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .heading-inner {
             max-width: 768px;
             width: 100%;
             background: #F6F6F5;
             display: flex;
             align-items: center;
-            margin: 1rem auto;
-
+            margin: 0 auto;
+            text-align: right;
         }
+
 
         .heading img {
             width: 170px;
@@ -55,6 +67,20 @@
             color: #F32424;
         }
 
+        .sign-out-box {
+            position: absolute;
+            right: 0;
+            margin: 1rem;
+            display: flex;
+
+        }
+
+        .sign-out-box p {
+            font-size: 1rem;
+            padding-top: 0.5rem;
+            padding-right: 1rem;
+        }
+
         #map {
             width: 100%;
             max-width: 768px;
@@ -68,63 +94,92 @@
     <script>
         let y_cen = 37.4981125   // lat
         let x_cen = 127.0379399  // long
-        let map;
         let markers = [];
         let infowindows = [];
+        let lat=[];
+        let lon=[];
+
 
         $(document).ready(function () {
-            map = new naver.maps.Map('map', {
-                center: new naver.maps.LatLng(37.4981125, 127.0379399),
-                zoom: 10,
-                mapTypeControl: true,
-                mapTypeControlOptions: {
-                    style: naver.maps.MapTypeControlStyle.BUTTON,
-                    position: naver.maps.Position.TOP_RIGHT
-                },
-                zoomControl: true,
-                zoomControlOptions: {
-                    style: naver.maps.ZoomControlStyle.SMALL,
-                    position: naver.maps.Position.TOP_RIGHT
-                },
-                scaleControl: true,
-                scaleControlOptions: {
-                    position: naver.maps.Position.RIGHT_CENTER
-                },
-                logoControl: true,
-                logoControlOptions: {
-                    position: naver.maps.Position.TOP_LEFT
-                },
-                mapDataControl: true,
-                mapDataControlOptions: {
-                    position: naver.maps.Position.BOTTOM_LEFT
-                },
-            });
-            get_liquor();
-        })
 
-
-         function get_liquor() {
-             $.ajax({
-                 type: "GET",
-                 url: '/alchol',
-                 data: {},
+            $.ajax({
+                type: "GET",
+                url: '/alchol',
+                data: {},
                 success: function (response) {
-                    console.log(response["alchols"])
-                 }
-             });
-         }
+                    let container = document.getElementById('map'),
+                        options = {
+                            center: new kakao.maps.LatLng(33.450701, 126.570667),
+                            level: 5
+                    };
+                    let lists = response['alchols'];
+                    let positions = [];
+                    let coords;
+                    let geocoder = new kakao.maps.services.Geocoder();
+                    let map = new kakao.maps.Map(container, options);
+                    // 마커 이미지의 이미지 주소입니다
+                    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+                    // 마커 이미지의 이미지 크기 입니다
+                    var imageSize = new kakao.maps.Size(24, 35);
+
+                    // 마커 이미지를 생성합니다
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                    for (let list of lists) {
+                        // 주소로 좌표를 검색합니다
+                        geocoder.addressSearch(list['place'], function (result, status) {
+
+                            // 정상적으로 검색이 완료됐으면
+                            if (status === kakao.maps.services.Status.OK) {
+
+                                coords = new kakao.maps.LatLng(parseFloat(result[0].y), parseFloat(result[0].x));
+                                // 마커를 생성합니다
+                                var marker = new kakao.maps.Marker({
+                                    map: map, // 마커를 표시할 지도
+                                    position: coords, // 마커를 표시할 위치
+                                    image: markerImage // 마커 이미지
+                                })
+
+                                marker.setMap(map);
+
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+
+
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
+
+
     </script>
 </head>
 <body>
+
+
 <section class="hero heading">
-    <div>
-        <img src="/static/loginbg3.png" alt="bg">
+    <div class="heading-inner">
+        <div>
+            <img src="/static/loginbg3.png" alt="bg">
+        </div>
+        <div class="hero-body">
+            <p class="subtitle">
+                자꾸 생각나는 솔직한 매력의 지역 전통주 <br>
+                <span class="recommend">추천해 (酒)</span>
+            </p>
+        </div>
     </div>
-    <div class="hero-body">
-        <p class="subtitle">
-            자꾸 생각나는 솔직한 매력의 지역 전통주 <br>
-            <span class="recommend">추천해 (酒)</span>
-        </p>
+    <div class="sign-out-box">
+        <p><span style="color:#c69760">{{ user_info.username }}</span>님 환영합니다!</p>
+        <button class="button is-warning" onclick="sign_out()">로그아웃</button>
     </div>
 </section>
 <section>
@@ -133,5 +188,6 @@
 <section class="container">
     <div class="content-box"></div>
 </section>
+
 </body>
 </html>
