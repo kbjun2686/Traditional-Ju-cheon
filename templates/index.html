@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7ff9a80a7e962c1cd405fb9330c34e4&libraries=services"></script>
-    {#    <script type="text/javascript"#}
-    {#            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=foovnp352n"></script>#}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,6 +19,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="/static/main.js" defer></script>
     <style>
         @font-face {
             font-family: 'ulsanjunggu';
@@ -93,17 +92,14 @@
             box-sizing: border-box;
         }
 
+        .isFixed {
+            position: fixed;
+            top: 0;
+        }
+
     </style>
 
     <script>
-        let y_cen = 37.4981125   // lat
-        let x_cen = 127.0379399  // long
-        let markers = [];
-        let infowindows = [];
-        let lat = [];
-        let lon = [];
-
-
         $(document).ready(function () {
 
             $.ajax({
@@ -131,7 +127,6 @@
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
                     for (let list of lists) {
-                        console.log(list);
                         // 주소로 좌표를 검색합니다
                         geocoder.addressSearch(list['place'], function (result, status) {
 
@@ -148,13 +143,13 @@
 
                                 // 마커에 표시할 인포윈도우를 생성합니다
                                 var infowindow = new kakao.maps.InfoWindow({
-                                    content: `${list.kind}: ${list.name}` // 인포윈도우에 표시할 내용
+                                    content: list.name // 인포윈도우에 표시할 내용
                                 });
 
                                 // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
                                 // 이벤트 리스너로는 클로저를 만들어 등록합니다
                                 // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-                                kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                                kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
                                 kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
                                 marker.setMap(map);
@@ -202,29 +197,28 @@
 </head>
 <body>
 
-
 <section class="hero heading">
-    <div class="heading-inner">
-        <div>
-            <img src="/static/loginbg3.png" alt="bg">
+        <div class="heading-inner">
+            <div>
+                <img src="/static/loginbg3.png" alt="bg">
+            </div>
+            <div class="hero-body">
+                <p class="subtitle">
+                    자꾸 생각나는 솔직한 매력의 지역 전통주 <br>
+                    <span class="recommend">추천해 (酒)</span>
+                </p>
+            </div>
         </div>
-        <div class="hero-body">
-            <p class="subtitle">
-                자꾸 생각나는 솔직한 매력의 지역 전통주 <br>
-                <span class="recommend">추천해 (酒)</span>
-            </p>
+        <div class="sign-out-box">
+            <p><span style="color:#c69760">{{ user_info.username }}</span>님 환영합니다!</p>
+            <button class="button is-warning" onclick="sign_out()">로그아웃</button>
         </div>
-    </div>
-    <div class="sign-out-box">
-        <p><span style="color:#c69760">{{ user_info.username }}</span>님 환영합니다!</p>
-        <button class="button is-warning" onclick="sign_out()">로그아웃</button>
-    </div>
 </section>
 <section>
     <div id="map"></div>
 </section>
 <section class="container">
-    <div class="content-box"></div>
+    <div class="content-box" style="height: 3000vh">ss</div>
 </section>
 
 </body>
