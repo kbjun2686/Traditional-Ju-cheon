@@ -17,7 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
 
-    <script>        
+
+    <script>    
         // $(document).ready(function(){
         //   makeList()
         // });
@@ -33,42 +34,78 @@
         //       }
         //     }
         //   })
-        // }
-
-
-
-
-
-
-
-        function show() {
-            $.ajax({
-                type: "GET",
-                url: "/alchol",
-                data:{},
-                success: function (response) {
-                    let rows = response["alchols"]
-                    for (let i = 0; i < rows.length; i++) {
-                        let place = rows[i]['place']
-                        let name = rows[i]['name']
-                        let kind = rows[i]['kind']
-                        console.log(place, name, kind)
-                        
-                    }
-                }
-            })
-        }
+        // }   
+        
         function sign_out() {
             $.removeCookie('mytoken', {path: '/'});
             alert('로그아웃!')
             window.location.href = "/login"
         }
+
+        
+
+
     </script>
 
 </head>
 <body>
+    <div id="map" style="width:500px;height:400px;"></div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38713a59f2ccf4818ba823067ba83e02&libraries=services"></script>
+    <script>
+      $(document).ready(function(){
+        var container = document.getElementById('map');
+        var options = {
+        center: new kakao.maps.LatLng(36.438528, 127.858468),
+        level: 14
+        };  
+
+        var map = new kakao.maps.Map(container, options);
+        var geocoder = new kakao.maps.services.Geocoder();
+
+
+        $.ajax({
+              type: "GET",
+              url: "/alchol",
+              data:{},
+              success: function (response) {
+                  let rows = response["alchols"]
+                  for (let i = 0; i < rows.length; i++) {
+                      let place = rows[i]['place']
+                      let name = rows[i]['name']
+                      let kind = rows[i]['kind']
+                      var listData =[place]
+                    
+
+
+                      listData.forEach(function(addr, index) {
+                        geocoder.addressSearch(addr, function(result, status) {
+                          if (status === kakao.maps.services.Status.OK) {
+                          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                          var marker = new kakao.maps.Marker({
+                              map: map,
+                              position: coords
+                          });
+                          var infowindow = new kakao.maps.InfoWindow({
+                              content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
+                              disableAutoPan: true
+                          });
+                          infowindow.open(map, marker);
+                          } 
+                        });
+                      });
+                  }
+              }
+          })
+      })
+      
+
+      
+      
+
+    </script>
+
     <h1>로그인 성공!</h1>
-    <button onclick="show()">test</button>
     <nav id="btns-me" class="level is-mobile" style="margin-top:2rem">
         <a class="button level-item has-text-centered is-sparta is-outlined" aria-label="logout"
            onclick="sign_out()">
@@ -76,5 +113,6 @@
                                                                  aria-hidden="true"></i></span>
         </a>
     </nav>
+    
 </body>
 </html> 
